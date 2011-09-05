@@ -48,10 +48,10 @@ module Resque::Plugins
 
     def around_perform_proby(*args)
       _proby_id = proby_id(*args)
-      ProbyNotification.send_start_notification(_proby_id)
+      ProbyNotifier.send_start_notification(_proby_id)
       yield
     ensure
-      ProbyNotification.send_finish_notification(_proby_id)
+      ProbyNotifier.send_finish_notification(_proby_id)
     end
   end
 end
