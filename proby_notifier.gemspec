@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler", "~> 1.0.0"
   s.add_development_dependency "rake", "~> 0.8.7"
   s.add_development_dependency "yard", "~> 0.6.4"
+  s.add_development_dependency "bluecloth", "~> 2.1.0"
   s.add_development_dependency "fakeweb", "~> 1.3.0"
   s.add_development_dependency "shoulda", "~> 2.11.3"
 

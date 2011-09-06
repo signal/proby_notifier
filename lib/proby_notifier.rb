@@ -10,6 +10,8 @@ module ProbyNotifier
 
     # Set your Proby API key.
     #
+    # @param [String] api_key Your Proby API key
+    #
     # @example
     #   ProbyNotifier.api_key = '1234567890abcdefg'
     def api_key=(api_key)
@@ -18,6 +20,8 @@ module ProbyNotifier
 
     # Set the logger to be used by Proby.
     #
+    # @param [Logger] logger The logger you would like ProbyNotifier to use
+    #
     # @example
     #   ProbyNotifier.logger = Rails.logger
     #   ProbyNotifier.logger = Logger.new(STDERR)
@@ -25,23 +29,23 @@ module ProbyNotifier
       @logger = logger
     end
 
-    # Get the logger used by Proby
+    # Get the logger used by Proby.
     def logger
       @logger || Logger.new("/dev/null")
     end
 
     # Send a start notification for this task to Proby.
     #
-    # The id of the task to be notified can either be passed in
-    # directly, or obtained via the PROBY_TASK_ID environment variable.
+    # @param [String] proby_task_id The id of the task to be notified. If nil, the 
+    #                               value of the +PROBY_TASK_ID+ environment variable will be used.
     def send_start_notification(proby_task_id=nil)
       send_notification('/start', proby_task_id)
     end
 
     # Send a finish notification for this task to Proby
     #
-    # The id of the task to be notified can either be passed in
-    # directly, or obtained via the PROBY_TASK_ID environment variable.
+    # @param [String] proby_task_id The id of the task to be notified. If nil, the 
+    #                               value of the +PROBY_TASK_ID+ environment variable will be used.
     def send_finish_notification(proby_task_id=nil)
       send_notification('/finish', proby_task_id)
     end

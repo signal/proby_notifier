@@ -13,7 +13,6 @@ end
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
 require 'yard'
 
 task :default => :test
@@ -24,20 +23,12 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "proby_notifier #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
 YARD::Rake::YardocTask.new do |t|
   t.files = ['lib/**/*.rb']
 end
 
-desc 'Delete rdoc, yard, and other generated files'
-task :clobber => [:clobber_rdoc, :clobber_yard]
+desc 'Delete yard, and other generated files'
+task :clobber => [:clobber_yard]
 
 desc 'Delete yard generated files'
 task :clobber_yard do
