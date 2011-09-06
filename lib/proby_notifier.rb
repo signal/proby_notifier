@@ -1,4 +1,5 @@
 require 'net/https'
+require 'logger'
 
 module ProbyNotifier
 
@@ -7,12 +8,26 @@ module ProbyNotifier
   # Deliver start and finish notifications to Proby.
   class << self
 
-    # Call this method to set your Proby API key
+    # Set your Proby API key.
     #
     # @example
     #   ProbyNotifier.api_key = '1234567890abcdefg'
     def api_key=(api_key)
       @api_key = api_key
+    end
+
+    # Set the logger to be used by Proby.
+    #
+    # @example
+    #   ProbyNotifier.logger = Rails.logger
+    #   ProbyNotifier.logger = Logger.new(STDERR)
+    def logger=(logger)
+      @logger = logger
+    end
+
+    # Get the logger used by Proby
+    def logger
+      @logger || Logger.new("/dev/null")
     end
 
     # Send a start notification for this task to Proby.
@@ -35,13 +50,13 @@ module ProbyNotifier
 
     def send_notification(type, proby_task_id)
       if @api_key.nil?
-        puts "API key not set"
+        logger.warn "API key not set"
         return nil
       end
 
       proby_task_id ||= ENV['PROBY_TASK_ID']
       if proby_task_id.nil?
-        puts "Task ID not specified"
+        logger.warn "Task ID not specified"
         return nil
       end
 
@@ -56,8 +71,8 @@ module ProbyNotifier
       res = http.start { |h| h.request(req) }
       return res.code.to_i
     rescue Exception => e
-      puts "Proby notification failed: #{e.message}"
-      puts e.backtrace
+      logger.error "Proby notification failed: #{e.message}"
+      logger.error e.backtrace
     end
   end
 
