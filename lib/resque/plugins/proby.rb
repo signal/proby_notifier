@@ -3,7 +3,7 @@ module ProbyNotifier
     # Automatically notifies Proby when this job starts and finishes.
     #
     #   class SomeJob
-    #     extend Resque::Plugins::Proby
+    #     extend ProbyNotifier::Resque::Plugins::Proby
     #
     #     self.perform
     #       do_stuff
