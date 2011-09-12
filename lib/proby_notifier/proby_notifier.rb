@@ -54,13 +54,13 @@ module ProbyNotifier
 
     def send_notification(type, proby_task_id)
       if @api_key.nil?
-        logger.warn "ProbyNotifier: API key not set"
+        logger.warn "ProbyNotifier: No notification sent because API key is not set"
         return nil
       end
 
       proby_task_id ||= ENV['PROBY_TASK_ID']
       if proby_task_id.nil?
-        logger.warn "ProbyNotifier: Task ID not specified"
+        logger.warn "ProbyNotifier: No notification sent because task ID was not specified"
         return nil
       end
 
