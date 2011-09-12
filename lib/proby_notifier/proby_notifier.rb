@@ -58,8 +58,8 @@ module ProbyNotifier
         return nil
       end
 
-      proby_task_id ||= ENV['PROBY_TASK_ID']
-      if proby_task_id.nil?
+      proby_task_id = ENV['PROBY_TASK_ID'] if is_blank?(proby_task_id)
+      if is_blank?(proby_task_id)
         logger.warn "ProbyNotifier: No notification sent because task ID was not specified"
         return nil
       end
@@ -77,6 +77,10 @@ module ProbyNotifier
     rescue Exception => e
       logger.error "ProbyNotifier: Proby notification failed: #{e.message}"
       logger.error e.backtrace
+    end
+
+    def is_blank?(string)
+      string.nil? || string.strip == ''
     end
   end
 

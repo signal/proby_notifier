@@ -20,6 +20,10 @@ class ProbyNotifierTest < Test::Unit::TestCase
       assert_nil ProbyNotifier.send_start_notification
     end
 
+    should "not send the notification if a task id is blank" do
+      assert_nil ProbyNotifier.send_start_notification("  ")
+    end
+
     should "send a start notification if a task_id is specified in the call" do
       FakeWeb.register_uri(:post, "https://proby.signalhq.com/tasks/abc123xyz456/start", :status => ["200", "Success"])
       assert_equal 200, ProbyNotifier.send_start_notification("abc123xyz456")
