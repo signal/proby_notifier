@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %Q{A simple library for working with the Proby task monitoring application.}
   s.description = %Q{A simple library for working with the Proby task monitoring application.}
 
-  s.rubyforge_project = "proby_notification"
+  s.rubyforge_project = "proby_notifier"
 
   s.required_rubygems_version = ">= 1.3.6"
 
