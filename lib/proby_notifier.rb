@@ -54,13 +54,13 @@ module ProbyNotifier
 
     def send_notification(type, proby_task_id)
       if @api_key.nil?
-        logger.warn "API key not set"
+        logger.warn "ProbyNotifier: API key not set"
         return nil
       end
 
       proby_task_id ||= ENV['PROBY_TASK_ID']
       if proby_task_id.nil?
-        logger.warn "Task ID not specified"
+        logger.warn "ProbyNotifier: Task ID not specified"
         return nil
       end
 
@@ -75,7 +75,7 @@ module ProbyNotifier
       res = http.start { |h| h.request(req) }
       return res.code.to_i
     rescue Exception => e
-      logger.error "Proby notification failed: #{e.message}"
+      logger.error "ProbyNotifier: Proby notification failed: #{e.message}"
       logger.error e.backtrace
     end
   end
