@@ -7,7 +7,7 @@ Setup
 Before notifications can be sent, you must tell ProbyNotifier your API key.  This only needs to be done once,
 and should ideally be done inside your apps initialization code.
 
-    ProbyNotifier.api_key = b4fe1200c105012efde3482a1411a947
+    ProbyNotifier.api_key = "b4fe1200c105012efde3482a1411a947"
 
 In addition, you can give ProbyNotifier a logger to use.
 
