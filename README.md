@@ -9,7 +9,7 @@ and should ideally be done inside your apps initialization code.
 
     ProbyNotifier.api_key = "b4fe1200c105012efde3482a1411a947"
 
-In addition, you can give ProbyNotifier a logger to use.
+In addition, you can optionally give ProbyNotifier a logger to use.
 
     ProbyNotifier.logger = Rails.logger
 
@@ -39,7 +39,7 @@ by setting the `@proby_id` attribute to the task id.
 
     class SomeJob
       extend ProbyNotifier::ResquePlugin
-      @proby_id = 'abc123'
+      @proby_id = 'abc123'  # Or simply let it use the value in the PROBY_TASK_ID environment variable
 
       self.perform
         do_stuff
