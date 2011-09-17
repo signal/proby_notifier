@@ -32,7 +32,7 @@ will be sent.
 
 The Resque Plugin
 -----------------
-The Resque pluging will automatically send start and finish notifications to Proby when your job
+The Resque plugin will automatically send start and finish notifications to Proby when your job
 starts and finishes.  Simply `extend ProbyNotifier::ResquePlugin` in your Resque job.  The task id
 can either be pulled from the `PROBY_TASK_ID` environment variable, or specified in the job itself
 by setting the `@proby_id` attribute to the task id.
