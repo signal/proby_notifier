@@ -47,11 +47,18 @@ module ProbyNotifier
     end
 
     def around_perform_proby(*args)
+      failed = false
+      error_message = nil
       _proby_id = proby_id(*args)
       ProbyNotifier.send_start_notification(_proby_id)
       yield
+    rescue Exception => e
+      failed = true
+      error_message = "#{e.class.name}: #{e.message}"
+      error_message << "\n#{e.backtrace.join("\n")}" if e.backtrace
+      raise e
     ensure
-      ProbyNotifier.send_finish_notification(_proby_id)
+      ProbyNotifier.send_finish_notification(_proby_id, :failed => failed, :error_message => error_message)
     end
   end
 end
