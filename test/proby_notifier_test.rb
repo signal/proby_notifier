@@ -40,6 +40,11 @@ class ProbyNotifierTest < Test::Unit::TestCase
       assert_equal 200, ProbyNotifier.send_finish_notification("abc123xyz456")
     end
 
+    should "send a finish notification with options if options are specified" do
+      FakeWeb.register_uri(:post, "https://proby.signalhq.com/tasks/abc123xyz456/finish", :status => ["200", "Success"])
+      assert_equal 200, ProbyNotifier.send_finish_notification("abc123xyz456", :failed => true, :error_message => "something bad happened")
+    end
+
     should "send a finish notification if a task_id is specified in an environment variable" do
       ENV['PROBY_TASK_ID'] = "iii999ooo222"
       FakeWeb.register_uri(:post, "https://proby.signalhq.com/tasks/iii999ooo222/finish", :status => ["200", "Success"])
