@@ -2,6 +2,29 @@
 A simple library for working with the Proby task monitoring application.
 
 
+Installation
+------------
+
+### RubyGems ###
+ProbyNotifier can be installed using RubyGems
+
+    gem install proby_notifier
+
+Inside your script, be sure to
+
+    require "rubygems"
+    require "proby_notifier"
+
+### Bundler ###
+If you're using Bundler, add the following to your Gemfile
+
+    gem 'proby_notifier'
+
+and then run
+
+    bundle install
+
+
 Setup
 -----
 Before notifications can be sent, you must tell ProbyNotifier your API key.  This only needs to be done once,
