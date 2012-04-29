@@ -1,1 +1,1 @@
-ProbyNotifier has been deprecated.  Please use [Proby](https://github.com/signal/proby) instead.
+ProbyNotifier has been deprecated.  Please use [Proby](https://github.com/signal/proby-ruby) instead.
